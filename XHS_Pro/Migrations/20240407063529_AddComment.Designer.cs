@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XHS_Pro.Data;
 
@@ -11,9 +12,11 @@ using XHS_Pro.Data;
 namespace XHS_Pro.Migrations
 {
     [DbContext(typeof(XHS_ProContext))]
-    partial class XHS_ProContextModelSnapshot : ModelSnapshot
+    [Migration("20240407063529_AddComment")]
+    partial class AddComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

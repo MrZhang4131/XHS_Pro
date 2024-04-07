@@ -13,6 +13,7 @@
 
         public string? tag { get; set; }
         public string? surfacePicture { get; set; }
+        public string[]? PictureUrl { get; set; }
         public int praisenum { get; set; }
         public int collectionnum { get; set; }
         public int deleted {  get; set; }

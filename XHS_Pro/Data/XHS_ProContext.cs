@@ -15,5 +15,7 @@ namespace XHS_Pro.Data
         }
 
         public DbSet<XHS_Pro.Models.User> User { get; set; } = default!;
+        public DbSet<XHS_Pro.Models.Note> Note { get; set; } = default!;
+        public DbSet<XHS_Pro.Models.Comment> Comment { get; set; } = default!;
     }
 }

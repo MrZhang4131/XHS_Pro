@@ -1,1 +1,2 @@
 2024/4/7 12:31:17 DeveloperSharp.Redis 许可证文件不存在，当前为免费版，具体详情请见：http://www.developersharp.cc/buy.html..License file does not exist, therefore the current version is free version. For specific details, please refer to:http://www.developersharp.cc/buy.html
+2024/4/7 13:02:38 DeveloperSharp.Redis 许可证文件不存在，当前为免费版，具体详情请见：http://www.developersharp.cc/buy.html..License file does not exist, therefore the current version is free version. For specific details, please refer to:http://www.developersharp.cc/buy.html

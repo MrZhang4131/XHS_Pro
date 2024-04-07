@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XHS_Pro.Data;
 
@@ -11,9 +12,11 @@ using XHS_Pro.Data;
 namespace XHS_Pro.Migrations
 {
     [DbContext(typeof(XHS_ProContext))]
-    partial class XHS_ProContextModelSnapshot : ModelSnapshot
+    [Migration("20240407050552_AddNote")]
+    partial class AddNote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,43 +25,6 @@ namespace XHS_Pro.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("XHS_Pro.Models.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("comment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("deleted")
-                        .HasColumnType("int");
-
-                    b.Property<string>("headphoto")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("noteid")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("updated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("userid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Comment");
-                });
-
             modelBuilder.Entity("XHS_Pro.Models.Note", b =>
                 {
                     b.Property<int>("id")
@@ -66,9 +32,6 @@ namespace XHS_Pro.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<string>("PictureUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("collectionnum")
                         .HasColumnType("int");
