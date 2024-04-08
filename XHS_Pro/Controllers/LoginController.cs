@@ -83,7 +83,7 @@ namespace XHS_Pro.Controllers
         public  string UploadImage(IFormFile headphoto)
         {
             string currentDirectory = Environment.CurrentDirectory;
-            string s = SaveImage(headphoto, currentDirectory+"\\Image");
+            string s = SaveImage(headphoto, currentDirectory+"\\Image\\UserIamge");
 
             return s;
         }

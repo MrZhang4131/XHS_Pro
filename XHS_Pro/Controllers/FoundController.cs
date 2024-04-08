@@ -75,6 +75,8 @@ namespace XHS_Pro.Controllers
 
         return Json(new InfoRes
         {
+            created = result.created,
+            updated = result.updated,
             username=result.username,
             content=result.content,
             comment=await context.Comment.Where(c=>c.noteid==id).ToListAsync(),
@@ -84,7 +86,7 @@ namespace XHS_Pro.Controllers
             title=result.title,
             collectionnum=result.collectionnum,
             praisenum=result.praisenum,
-
+            videourl = result.videourl,
         });
         }
         public async Task<JsonResult> search(string param)
