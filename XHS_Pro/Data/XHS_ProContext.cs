@@ -19,5 +19,6 @@ namespace XHS_Pro.Data
         public DbSet<XHS_Pro.Models.Comment> Comment { get; set; } = default!;
         public DbSet<XHS_Pro.Models.Start> Start { get; set; } = default!;
         public DbSet<XHS_Pro.Models.Zan> Zan { get; set; } = default!;
+        public DbSet<XHS_Pro.Models.Goods> Goods { get; set; } = default!;
     }
 }

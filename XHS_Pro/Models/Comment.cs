@@ -8,6 +8,7 @@
         public int Id { get; set; }
         public int userid { get; set; }
         public int noteid { get; set; }
+        public int goodsid { get; set; }
         public string? comment { get; set; }
         public string? username { get; set; }
         public int deleted { get; set; }
