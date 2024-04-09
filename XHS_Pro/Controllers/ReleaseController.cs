@@ -26,6 +26,36 @@ namespace XHS_Pro.Controllers
             public int userid { get; set; }
             public string? videourl { get; set; }
         }
+        public class PicNote
+        {
+            public string? content { get; set; }
+            public string[]? pictureurl { get; set; }
+            public string? surfacePicture { get; set; }
+            public string? tag { get; set; }
+            public string? title { get; set; }
+            public int userid { get; set; }
+        }
+        public async Task<JsonResult> picturenote([FromBody] PicNote picNote)
+        {
+            var user = await context.User.FirstOrDefaultAsync(p=>p.id==picNote.userid);
+            await context.AddAsync(new Note
+            {
+                created=DateTime.Now,
+                updated=DateTime.Now,
+                userid=user.id,
+                username=user.username,
+                content=picNote.content, 
+                surfacePicture=picNote.surfacePicture,
+                tag=picNote.tag,
+                title=picNote.title,
+                PictureUrl=picNote.pictureurl,
+                collectionnum=0,
+                praisenum=0,
+            });
+            await context.SaveChangesAsync();
+            return Json("上传成功");
+
+        }
         public async Task<JsonResult> note([FromBody] VideoNote videoNote)
         {
             var user = await context.User.FirstOrDefaultAsync(p => p.id == videoNote.userid);
@@ -40,7 +70,7 @@ namespace XHS_Pro.Controllers
                 surfacePicture = videoNote.surfacePicture,
                 tag = videoNote.tag,
                 videourl = videoNote.videourl,
-                PictureUrl = { },
+                PictureUrl = [],
                 title = videoNote.title,
                 collectionnum = 0,
                 praisenum = 0,
@@ -49,10 +79,10 @@ namespace XHS_Pro.Controllers
             return Json("上传成功");
         }
         [Route("/video")]
-        public async Task<IActionResult> ShowImage(string url)
+        public async Task<IActionResult> ShowVideo(string url)
         {
 
-            return PhysicalFile(url, "video/mp4");
+            return  PhysicalFile(url, "video/mp4");
         }
         public string uploadPicture(IFormFile headphoto)
         {
