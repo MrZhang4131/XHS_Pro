@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using XHS_Pro.Data;
 using XHS_Pro.Models;
@@ -7,7 +6,6 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace XHS_Pro.Controllers
 {
-    [Authorize]
     public class ReleaseController : Controller
     {
         private XHS_ProContext context;
