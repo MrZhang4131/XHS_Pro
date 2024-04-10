@@ -29,15 +29,20 @@ namespace XHS_Pro.Controllers
         public class ContentRes
         {
             public Goods goods { get; set; }
-            public List<Comment> goodsCommen { get; set; }
+            public List<Comment> goodsComment { get; set; }
         }
         public async Task<JsonResult> content(int id)
         {
             return Json(new ContentRes
             {
                 goods= await context.Goods.FirstOrDefaultAsync(p=>p.Id==id),
-                goodsCommen = await context.Comment.ToListAsync(),
+                goodsComment = await context.Comment.Where(p=>p.goodsid==id).ToListAsync(),
             });
+        }
+        public async Task<JsonResult> search(string param)
+        {
+            var result = await context.Goods.Where(n => n.goodsName.Contains(param) || n.goodsContent.Contains(param) || n.goodsTag.Contains(param)).ToListAsync();
+            return Json(result);
         }
     }
 }

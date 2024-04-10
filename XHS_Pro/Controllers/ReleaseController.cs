@@ -106,7 +106,7 @@ namespace XHS_Pro.Controllers
                 }
 
                 // 生成唯一的文件名，可以使用 Guid 或者其他方式
-                string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                string uniqueFileName = "vv"+Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
 
                 // 拼接保存路径
                 string filePath = Path.Combine(directoryPath, uniqueFileName);
@@ -147,7 +147,7 @@ namespace XHS_Pro.Controllers
                 }
 
                 // 生成唯一的文件名，可以使用 Guid 或者其他方式
-                string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(video.FileName);
+                string uniqueFileName = "vv"+Guid.NewGuid().ToString() + Path.GetExtension(video.FileName);
 
                 // 拼接保存路径
                 string filePath = Path.Combine(directoryPath, uniqueFileName);

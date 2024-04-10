@@ -83,7 +83,7 @@ namespace XHS_Pro.Controllers
         public  string UploadImage(IFormFile headphoto)
         {
             string currentDirectory = Environment.CurrentDirectory;
-            string s = SaveImage(headphoto, currentDirectory+"\\Image\\UserIamge");
+            string s = SaveImage(headphoto, currentDirectory+"\\Image\\UserImage");
 
             return s;
         }
@@ -103,7 +103,7 @@ namespace XHS_Pro.Controllers
                 }
 
                 // 生成唯一的文件名，可以使用 Guid 或者其他方式
-                string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                string uniqueFileName = "ii"+Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
 
                 // 拼接保存路径
                 string filePath = Path.Combine(directoryPath, uniqueFileName);

@@ -6,7 +6,7 @@
         public DateTime updated { get; set; }
         public int Id { get; set; }
         public string? goodsName { get; set; }
-        public int price { get; set; }
+        public float price { get; set; }
         public string? goodsContent { get; set; }
         public string? goodsTag { get; set; }
         public string? picture { get; set; }

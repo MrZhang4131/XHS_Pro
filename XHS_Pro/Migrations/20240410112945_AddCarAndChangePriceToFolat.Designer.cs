@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XHS_Pro.Data;
 
@@ -11,9 +12,11 @@ using XHS_Pro.Data;
 namespace XHS_Pro.Migrations
 {
     [DbContext(typeof(XHS_ProContext))]
-    partial class XHS_ProContextModelSnapshot : ModelSnapshot
+    [Migration("20240410112945_AddCarAndChangePriceToFolat")]
+    partial class AddCarAndChangePriceToFolat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,49 +24,6 @@ namespace XHS_Pro.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("XHS_Pro.Models.Car", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<float>("amount")
-                        .HasColumnType("real");
-
-                    b.Property<int>("count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("delete")
-                        .HasColumnType("int");
-
-                    b.Property<int>("goodsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("goodsName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("picture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("price")
-                        .HasColumnType("real");
-
-                    b.Property<DateTime>("updated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("userId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Car");
-                });
 
             modelBuilder.Entity("XHS_Pro.Models.Comment", b =>
                 {
