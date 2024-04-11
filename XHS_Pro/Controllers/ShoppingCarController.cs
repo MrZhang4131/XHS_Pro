@@ -6,7 +6,7 @@ using XHS_Pro.Models;
 
 namespace XHS_Pro.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ShoppingCarController : Controller
     {
         private XHS_ProContext context;
@@ -44,6 +44,7 @@ namespace XHS_Pro.Controllers
             var car = await context.Car.FirstOrDefaultAsync(c=>c.Id==id);
             car.count += count;
             car.amount = car.count * car.price;
+            car.updated = DateTime.Now;
             context.Car.Update(car);
             await context.SaveChangesAsync();
             return Json("商品数量加"+ count.ToString());
@@ -53,6 +54,7 @@ namespace XHS_Pro.Controllers
             var car = await context.Car.FirstOrDefaultAsync(c => c.Id == id);
             car.count += count;
             car.amount = car.count * car.price;
+            car.updated = DateTime.Now;
             context.Car.Update(car);
             await context.SaveChangesAsync();
             return Json("商品数量减" + count.ToString());
@@ -61,20 +63,36 @@ namespace XHS_Pro.Controllers
         {
             var car = await context.Car.FirstOrDefaultAsync(c => c.Id == id);
             car.delete = 1;
+            car.updated = DateTime.Now;
             context.Car.Update(car);
             await context.SaveChangesAsync();
             return Json("删除成功");
         }
-        public class Set
+        
+        public async Task<JsonResult> settlement([FromQuery(Name = "id[]")] List<int> id)
         {
             foreach (var item in id)
             {
                 var car = await context.Car.FirstOrDefaultAsync(c => c.Id == item);
                 car.delete = 1;
+                car.updated = DateTime.Now;
+                var user=await context.User.FirstOrDefaultAsync(u => u.id == car.userId);
+                await context.Order.AddAsync(new Order
+                {
+                    created = DateTime.Now,
+                    updated = DateTime.Now,
+                    goodsId = car.goodsId,
+                    userId = car.userId,
+                    userName = user.username,
+                    picture = car.picture,
+                    count = car.count,
+                    amount = car.amount,
+                    deleted = 0,
+                });
                 context.Car.Update(car);
                 await context.SaveChangesAsync();
             }
-            return Json(id);
+            return Json("结算成功");
         }
     }
 }

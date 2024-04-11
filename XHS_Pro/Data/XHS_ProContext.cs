@@ -21,5 +21,6 @@ namespace XHS_Pro.Data
         public DbSet<XHS_Pro.Models.Zan> Zan { get; set; } = default!;
         public DbSet<XHS_Pro.Models.Goods> Goods { get; set; } = default!;
         public DbSet<XHS_Pro.Models.Car> Car { get; set; } = default!;
+        public DbSet<XHS_Pro.Models.Order> Order { get; set; } = default!;
     }
 }
