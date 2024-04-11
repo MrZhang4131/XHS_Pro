@@ -17,5 +17,7 @@ namespace XHS_Pro.Models
         public int age { get; set; }
         public string? introduction { get; set; }
         public string? usertype { get; set; }
+        public float money { get; set; }
+        public float returnMoney { get; set; }
     }
 }

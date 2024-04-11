@@ -66,6 +66,7 @@ namespace XHS_Pro.Controllers
             public int collectionnum { get; set; }
             public int praisenum { get; set; }
             public DateTime commentTime { get; set; }
+            public int rebateid { get; set; }
 
         }
 
@@ -89,6 +90,7 @@ namespace XHS_Pro.Controllers
             collectionnum=result.collectionnum,
             praisenum=result.praisenum,
             videourl = result.videourl,
+            rebateid=result.rebateid,
         });
         }
         public async Task<JsonResult> search(string param)
@@ -153,7 +155,7 @@ namespace XHS_Pro.Controllers
                 {
                     result.enable = 1;
                     var note = await context.Note.FirstOrDefaultAsync(n => n.id == noteid);
-                    note.collectionnum -= 1;
+                    note.collectionnum += 1;
                     await context.SaveChangesAsync();
                     return Json("收藏成功");
                 }
@@ -190,7 +192,7 @@ namespace XHS_Pro.Controllers
                 {
                     result.enable = 1;
                     var note = await context.Note.FirstOrDefaultAsync(n => n.id == noteid);
-                    note.praisenum -= 1;
+                    note.praisenum += 1;
                     await context.SaveChangesAsync();
                     return Json("点赞成功");
                 }

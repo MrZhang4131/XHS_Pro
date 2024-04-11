@@ -168,6 +168,9 @@ namespace XHS_Pro.Migrations
                     b.Property<int>("praisenum")
                         .HasColumnType("int");
 
+                    b.Property<int>("rebateid")
+                        .HasColumnType("int");
+
                     b.Property<string>("surfacePicture")
                         .HasColumnType("nvarchar(max)");
 
@@ -279,11 +282,17 @@ namespace XHS_Pro.Migrations
                     b.Property<string>("introduction")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float>("money")
+                        .HasColumnType("real");
+
                     b.Property<string>("password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("phone")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("returnMoney")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("updated")
                         .HasColumnType("datetime2");

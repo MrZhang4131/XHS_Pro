@@ -80,6 +80,7 @@ namespace XHS_Pro.Controllers
             await context.SaveChangesAsync();
             return Json("上传成功");
         }
+        [AllowAnonymous]
         [Route("/video")]
         public async Task<IActionResult> ShowVideo(string url)
         {

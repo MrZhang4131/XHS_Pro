@@ -17,7 +17,7 @@
         public string[]? PictureUrl { get; set; }
         public string? videourl { get; set; }
 
-
+        public int rebateid { get; set; }
 
     }
 }
