@@ -67,10 +67,6 @@ namespace XHS_Pro.Controllers
         }
         public class Set
         {
-            int[] id { get; set; }
-        }
-        public async Task<JsonResult> settlement([FromQuery(Name = "id[]")] List<int> id)
-        {
             foreach (var item in id)
             {
                 var car = await context.Car.FirstOrDefaultAsync(c => c.Id == item);
