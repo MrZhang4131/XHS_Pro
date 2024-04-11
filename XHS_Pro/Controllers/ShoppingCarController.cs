@@ -6,7 +6,7 @@ using XHS_Pro.Models;
 
 namespace XHS_Pro.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ShoppingCarController : Controller
     {
         private XHS_ProContext context;
@@ -33,6 +33,52 @@ namespace XHS_Pro.Controllers
             await context.SaveChangesAsync();
 
             return (Json("保存成功"));
+        }
+        public async Task<JsonResult> shopcar(int userid)
+        {
+            var reslut = await context.Car.Where(c=>c.userId==userid && c.delete==0).ToListAsync();
+            return Json(reslut);
+        }
+        public async Task<JsonResult> addCount(int id,int count)
+        {
+            var car = await context.Car.FirstOrDefaultAsync(c=>c.Id==id);
+            car.count += count;
+            car.amount = car.count * car.price;
+            context.Car.Update(car);
+            await context.SaveChangesAsync();
+            return Json("商品数量加"+ count.ToString());
+        }
+        public async Task<JsonResult> reduceCount(int id, int count)
+        {
+            var car = await context.Car.FirstOrDefaultAsync(c => c.Id == id);
+            car.count += count;
+            car.amount = car.count * car.price;
+            context.Car.Update(car);
+            await context.SaveChangesAsync();
+            return Json("商品数量减" + count.ToString());
+        }
+        public async Task<JsonResult> remove(int id)
+        {
+            var car = await context.Car.FirstOrDefaultAsync(c => c.Id == id);
+            car.delete = 1;
+            context.Car.Update(car);
+            await context.SaveChangesAsync();
+            return Json("删除成功");
+        }
+        public class Set
+        {
+            int[] id { get; set; }
+        }
+        public async Task<JsonResult> settlement([FromQuery(Name = "id[]")] List<int> id)
+        {
+            foreach (var item in id)
+            {
+                var car = await context.Car.FirstOrDefaultAsync(c => c.Id == item);
+                car.delete = 1;
+                context.Car.Update(car);
+                await context.SaveChangesAsync();
+            }
+            return Json(id);
         }
     }
 }
