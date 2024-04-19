@@ -199,6 +199,23 @@ namespace XHS_Pro.Controllers
             }
 
         }
+        
+        public async Task<JsonResult> pandc(int id,int noteid)
+        {
+            var p= await context.Zan.FirstOrDefaultAsync(p=>p.userid==id && p.noteid==noteid);
+            var c = await context.Start.FirstOrDefaultAsync(p => p.userid == id && p.noteid == noteid);
+            int a = 0;
+            int b = 0;
+            if (p != null && p.enable == 1)
+            {
+                a = p.enable;
+            }
+            if (c !=null && c.enable ==1)
+            {
+                b=c.enable;
+            }
+            return Json(new { a, b });
+        }
 
     }
 }
