@@ -12,6 +12,7 @@ namespace XHS_Pro.Data
         public XHS_ProContext (DbContextOptions<XHS_ProContext> options)
             : base(options)
         {
+
         }
 
         public DbSet<XHS_Pro.Models.User> User { get; set; } = default!;
