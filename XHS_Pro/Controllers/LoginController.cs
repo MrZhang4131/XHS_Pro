@@ -5,6 +5,9 @@ using XHS_Pro.Data;
 using XHS_Pro.Tools;
 using XHS_Pro.Tool;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using System.Net;
 
 namespace XHS_Pro.Controllers
 {
@@ -34,7 +37,7 @@ namespace XHS_Pro.Controllers
             return "Test ok";
         }
         [HttpPost]
-        public async Task<JsonResult> log([FromBody] Accept accept)
+        public async Task<IActionResult> log([FromBody] Accept accept)
         {
             
             string sms = RedisHelper.GetStringKey(accept.phone);
@@ -55,19 +58,13 @@ namespace XHS_Pro.Controllers
                 }
                 else
                 {
-                    return Json(new LogRes
-                    {
-                        User = null,
-                        Token = "账号或密码错误",
-                    });
+
+                    return Content("500", "账号或密码错误");
                 }
-                
+
             }
-            return Json(new LogRes
-            {
-                User=null,
-                Token="验证码错误",
-            });
+            return   Content("500", "验证码错误"); 
+            
         }
         [HttpPost]
         public IActionResult smsLogin([FromBody] User user)
